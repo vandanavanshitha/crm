@@ -1,0 +1,57 @@
+-- Create Project Table
+CREATE TABLE Project1 (
+    pid int PRIMARY KEY,
+    projectName VARCHAR(255) NOT NULL UNIQUE
+);
+
+-- Create Employee Table
+CREATE TABLE Employee1 (
+    empid int PRIMARY KEY,
+    employeeName VARCHAR(255) NOT NULL,
+    employeeEmail VARCHAR(255) NOT NULL UNIQUE,
+    employeeMobile BIGINT NOT NULL
+);
+
+-- Create Enquiry Table with Foreign Keys
+CREATE TABLE Enquiry11 (
+    eid bigint PRIMARY KEY,
+    client_name VARCHAR(255) NOT NULL,
+    client_email VARCHAR(255) NOT NULL,
+    client_mobile BIGINT NOT NULL,
+    client_address VARCHAR(255),
+    client_location VARCHAR(255),
+    client_pincode INTEGER,
+    client_city VARCHAR(255),
+    client_profession VARCHAR(255),
+    client_locality VARCHAR(255),
+    client_source VARCHAR(255),
+    project_id INTEGER NOT NULL,
+    project_component INTEGER NOT NULL,
+    remarks TEXT,
+    employee_id INTEGER NOT NULL,
+    enqr_date TIMESTAMP NOT NULL,
+    FOREIGN KEY (project_id) REFERENCES Project1(pid),
+    FOREIGN KEY (employee_id) REFERENCES Employee1(empid)
+);
+
+
+-- Insert data into Project table
+INSERT INTO Project1 (pid,projectName) VALUES 
+(1,'Project MVV'),
+(2,'Project SIRI'),
+(3,'Project OAK');
+select * from Project1;
+
+-- Insert data into Employee table
+INSERT INTO Employee1 (empid,employeeName, employeeEmail, employeeMobile) VALUES 
+(101,'John Doe', 'john.doe@example.com', 1234567890),
+(102,'Jane Smith', 'jane.smith@example.com', 2345678901),
+(103,'Alice Johnson', 'alice.johnson@example.com', 3456789012);
+select * from Employee1;
+
+-- Insert data into Enquiry table
+INSERT INTO Enquiry11 (eid,client_name, client_email, client_mobile, client_address, client_location, client_pincode, client_city, client_profession, client_locality, client_source, project_id, project_component, remarks, employee_id, enqr_date) VALUES 
+(10,'Jim', 'jimone@example.com', 9876543210, '123 Main St', 'us', 12345, 'cosco', 'Engineer', 'near post office', 'Online', 1, 1, 'Interested in 2BHK', 101, '2024-06-01 10:00:00'),
+(11,'Luis', 'luistwo@example.com', 8765432109, '456 Elm St', 'newzland', 54321, 'nelson', 'Doctor', 'near petrol station', 'Referral', 2, 2, 'Interested in 3BHK',102, '2024-06-01 11:00:00'),
+(12,'Ram', 'ramthree@example.com', 7654321098, '789 Oak St', 'india', 67890, 'vzm', 'Teacher', 'near mvgr college', 'Advertisement', 3, 3, 'Interested in 1BHK', 103, '2024-06-01 12:00:00');
+select * from Enquiry3;
